@@ -8,7 +8,7 @@ This analysis developed a deep learning model to predict patient readmission ris
  
 
 
-**Data Proprocessing**
+**Data Preprocessing**
 **Target Variable(s):** The target variable is readmitted (1 = patient was readmitted, 0 = not readmitted) 
 
 **Feature Variable(s):** All 151 columns from the original dataset except the target variable 
@@ -35,8 +35,11 @@ Note: The target variable was separated from features during processing
 
 
 Maintained all features as they showed predictive value 
+
 Used stratified sampling to preserve the natural 46% readmission rate in train/test splits 
+
 Scaled all features using StandardScaler for consistent numerical ranges 
+
 Split data into 75% training and 25% testing sets 
 
 **Model Architecture and Training:**
