@@ -12,6 +12,7 @@ This analysis developed a deep learning model to predict patient readmission ris
 **Target Variable(s):** The target variable is readmitted (1 = patient was readmitted, 0 = not readmitted) 
 
 **Feature Variable(s):** All 151 columns from the original dataset except the target variable 
+
 **key features include:**
 
 Time in hospital 
