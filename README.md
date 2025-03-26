@@ -1,44 +1,48 @@
 # Predicting-Hospital-Readmissions
-Project 4
+**Project 4**
  
 
-Overview of the Analysis 
+**Overview of the Analysis **
 
 This analysis developed a deep learning model to predict patient readmission risk using electronic health record data. The goal was to create a tool that helps healthcare providers identify high-risk patients who may need additional care or monitoring after discharge. By preprocessing patient data, designing a neural network architecture, and optimizing model performance, we aimed to build an accurate predictive tool that can support clinical decision-making. 
 
  
 
-Results 
-Data Preprocessing 
+**Results 
+Data Preprocessing **
 
-Target Variable(s): 
-The target variable is readmitted (1 = patient was readmitted, 0 = not readmitted) 
+**Target Variable(s):** The target variable is readmitted (1 = patient was readmitted, 0 = not readmitted) 
 
-Feature Variable(s): 
-All 151 columns from the original dataset except the target variable 
+**Feature Variable(s):** All 151 columns from the original dataset except the target variable 
 
-Key features include: 
-
+**Key features include: **
 Time in hospital 
-Number of procedures and medications 
+
+Number of procedures and medications
+
 Diagnostic history 
+
 Test results (A1C, glucose levels) 
+
 Treatment history 
 
 Variables Removed: 
+
 None - all features were retained for analysis 
+
 Note: The target variable was separated from features during processing 
 
  
 
-Data Preprocessing Steps: 
+**Data Preprocessing Steps: **
 
 Maintained all features as they showed predictive value 
 Used stratified sampling to preserve the natural 46% readmission rate in train/test splits 
 Scaled all features using StandardScaler for consistent numerical ranges 
 Split data into 75% training and 25% testing sets 
-Model Architecture and Training 
-Neural Network Design: 
+
+**Model Architecture and Training **
+**Neural Network Design: **
 
 Input Layer: 151 neurons (matching the number of features) 
 
