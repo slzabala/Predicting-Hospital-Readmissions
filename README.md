@@ -55,7 +55,9 @@ Output Layer: 1 neuron with Sigmoid activation for binary classification
 
 **Training Approach:**
 Used Adam optimizer with binary crossentropy loss 
+
 Implemented Hyperband algorithm for efficient hyperparameter tuning 
+
 Trained for 50-100 epochs with validation monitoring 
 
 
