@@ -3,84 +3,99 @@
  
 
 **Overview of the Analysis:**
-This analysis developed a deep learning model to predict patient readmission risk using electronic health record data. The goal was to create a tool that helps healthcare providers identify high-risk patients who may need additional care or monitoring after discharge. By preprocessing patient data, designing a neural network architecture, and optimizing model performance, we aimed to build an accurate predictive tool that can support clinical decision-making. 
+The purpose of this analysis was to develop a deep learning model to predict whether a patient will be readmitted to a hospital based on various medical and demographic features. The goal was to:
 
+Preprocess and clean patient data for model training.
+
+Build and train a neural network model using TensorFlow/Keras.
+
+Optimize the model using hyperparameter tuning with Keras Tuner.
+
+Evaluate model performance on test data to determine accuracy and reliability.
+
+The model was trained on a subset of 1,000 patient records, with hyperparameter tuning applied to improve performance.
  
 
 
 **Data Preprocessing**
-**Target Variable(s):** The target variable is readmitted (1 = patient was readmitted, 0 = not readmitted) 
+**Target Variable(s):** readmitted: Binary classification (whether a patient was readmitted or not).
 
-**Feature Variable(s):** All 151 columns from the original dataset except the target variable 
+**Feature Variable(s):** All other columns in the dataset except readmitted were used as features (150 features total).
 
-**key features include:**
+**Variables Removed**
+Only the target variable (readmitted) was explicitly removed from the input features.
 
-Time in hospital 
+Rows with null, negative, or duplicate values were filtered out to ensure data quality.
 
-Number of procedures and medications
+**2. Compiling, Training, and Evaluating the Model**
 
-Diagnostic history 
+Initial Model Architecture
 
-Test results (A1C, glucose levels) 
+**Layers:**
 
-Treatment history 
+**Input Layer**: 150 features → Dense (8 neurons, ReLU activation)
 
-**Variables Removed:**
+**Hidden Layers:**
 
-None - all features were retained for analysis 
+Dense (10 neurons, tanh activation)
 
-Note: The target variable was separated from features during processing 
+Dense (16 neurons, tanh activation)
 
- 
-**Data Preprocessing Steps:**
+**Output Layer**: 1 neuron (sigmoid activation for binary classification)
 
+**Optimizer**: Adam
 
-Maintained all features as they showed predictive value 
+**Loss Function:** Binary cross-entropy
 
-Used stratified sampling to preserve the natural 46% readmission rate in train/test splits 
+Epochs: 50
 
-Scaled all features using StandardScaler for consistent numerical ranges 
+**Model Performance**
 
-Split data into 75% training and 25% testing sets 
+**Training Accuracy:** 96.69% (indicating severe overfitting)
 
-**Model Architecture and Training:**
-**Neural Network Design:**
+**Test Accuracy:** 54.40% (poor generalization to unseen data)
 
-Input Layer: 151 neurons (matching the number of features) 
+**Loss:** 1.5654 (high, suggesting poor predictive capability)
 
-Hidden Layers: Dynamic architecture with 1-20 hidden layers (automatically optimized) 
+**Hyperparameter Tuning (Keras Tuner)**
 
-Neuron counts ranging from 3-19 per layer (tuned during optimization) 
+To improve performance, we used Keras Tuner to optimize:
 
-ReLU activation in most layers (automatically selected as optimal) 
+Activation Functions (relu, tanh, sigmoid)
 
-Output Layer: 1 neuron with Sigmoid activation for binary classification 
+Number of Hidden Layers (1 to 6)
 
+Neurons per Layer (1 to 10, in steps of 2)
 
-**Training Approach:**
-Used Adam optimizer with binary crossentropy loss 
+**Best Model After Tuning:**
 
-Implemented Hyperband algorithm for efficient hyperparameter tuning 
+Activation: tanh
 
-Trained for 50-100 epochs with validation monitoring 
+Layers: 6
 
+Neurons per Layer: Varied (3 to 9)
 
-**Model Performance :**
-The optimized model achieved: 
-Accuracy: 63.3% (initial evaluation) 
-Loss: 0.644 
+Validation Accuracy: 65.20% (improvement over initial model)
 
-After full training: 
-Accuracy: 62.8% 
-Loss: 0.651 
+Loss: 0.6460 (better than initial model)
 
+**Steps Taken to Improve Performance**
 
-**Key Optimization Strategies:**
-Automated hyperparameter tuning found optimal architecture (9 hidden layers) 
-Stratified sampling maintained realistic class distribution 
-Feature scaling ensured equal contribution from all variables 
+Hyperparameter Tuning: Automated search for optimal layer sizes and activations.
 
-**Summary:**
-The deep learning model achieved consistent performance around 63% accuracy in predicting patient readmissions. While this exceeds a simple majority-class baseline (54%), there remains room for improvement. The automated tuning successfully identified an effective 9-layer architecture with varied neuron counts that balanced complexity and performance. 
+Data Scaling: StandardScaler was applied to normalize features.
 
+Stratified Splitting: Ensured balanced class distribution in train/test sets.
+
+Early Stopping (Potential Future Improvement): Could prevent overfitting by halting training when validation accuracy plateaus.
+
+**Summary** 
+
+**Overall Model Performance**
+
+The tuned model achieved 65.2% accuracy, a significant improvement over the initial model (54.4%).
+
+However, the model still suffers from moderate overfitting (training accuracy was much higher than test accuracy).
+
+The loss value (0.646) suggests room for improvement.
  
