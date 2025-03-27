@@ -27,7 +27,7 @@ Only the target variable (readmitted) was explicitly removed from the input feat
 
 Rows with null, negative, or duplicate values were filtered out to ensure data quality.
 
-**2. Compiling, Training, and Evaluating the Model**
+**Compiling, Training, and Evaluating the Model**
 
 Initial Model Architecture
 
